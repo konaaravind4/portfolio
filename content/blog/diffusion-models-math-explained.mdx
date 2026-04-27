@@ -1,0 +1,80 @@
+---
+title: "Diffusion Models Explained: The Math Behind DALL-E and Stable Diffusion"
+excerpt: "Breaking down the forward and reverse diffusion processes, score matching, and classifier-free guidance that power modern image generation."
+date: "2025-10-05"
+tags: ["Generative AI", "Computer Vision", "ML", "Math"]
+author: "Kona Aravind"
+published: true
+---
+
+# Diffusion Models Explained: The Math Behind DALL-E and Stable Diffusion
+
+Diffusion models are the backbone of Stable Diffusion, DALL-E 3, and Imagen. Unlike GANs, they're stable to train and produce extraordinarily high-quality samples. Let's break down the mathematics.
+
+## The Core Idea
+
+Diffusion models learn to **reverse noise**. The forward process gradually adds Gaussian noise to an image over $T$ steps until it's pure noise. The model learns to reverse this process — denoising step by step.
+
+## Forward Process
+
+Given a clean image $x_0$, at each step $t$:
+
+$$q(x_t | x_{t-1}) = \mathcal{N}(x_t; \sqrt{1-\beta_t} x_{t-1}, \beta_t \mathbf{I})$$
+
+where $\beta_t$ is a noise schedule. Using the reparameterization trick, we can sample $x_t$ directly:
+
+$$x_t = \sqrt{\bar{\alpha}_t} x_0 + \sqrt{1 - \bar{\alpha}_t} \epsilon, \quad \epsilon \sim \mathcal{N}(0, \mathbf{I})$$
+
+where $\bar{\alpha}_t = \prod_{s=1}^t (1 - \beta_s)$.
+
+## Reverse Process
+
+The model $\epsilon_\theta(x_t, t)$ is trained to predict the noise $\epsilon$ added at step $t$:
+
+$$\mathcal{L}_{simple} = \mathbb{E}_{t, x_0, \epsilon} \left[ \| \epsilon - \epsilon_\theta(x_t, t) \|^2 \right]$$
+
+At inference, we iteratively denoise:
+
+$$x_{t-1} = \frac{1}{\sqrt{\alpha_t}} \left( x_t - \frac{1-\alpha_t}{\sqrt{1-\bar{\alpha}_t}} \epsilon_\theta(x_t, t) \right) + \sigma_t z$$
+
+## Classifier-Free Guidance (CFG)
+
+CFG allows conditioning on text without a separate classifier by jointly training conditioned and unconditioned versions:
+
+$$\tilde{\epsilon}_\theta(x_t, c) = \epsilon_\theta(x_t, \emptyset) + \omega \cdot [\epsilon_\theta(x_t, c) - \epsilon_\theta(x_t, \emptyset)]$$
+
+A higher guidance scale $\omega$ gives sharper, more text-aligned images at the cost of diversity.
+
+## Implementation Snippet
+
+```python
+scheduler = DDIMScheduler(num_train_timesteps=1000)
+
+for t in scheduler.timesteps:
+    with torch.no_grad():
+        noise_pred = unet(latents, t, encoder_hidden_states=text_embeddings).sample
+    
+    # CFG
+    noise_pred_uncond, noise_pred_text = noise_pred.chunk(2)
+    noise_pred = noise_pred_uncond + guidance_scale * (noise_pred_text - noise_pred_uncond)
+    
+    latents = scheduler.step(noise_pred, t, latents).prev_sample
+```
+
+## Why Latent Diffusion?
+
+Running diffusion in pixel space is computationally prohibitive ($512 \times 512 \times 3$ = 786K dimensions). Latent Diffusion Models (LDM) compress images with a VAE first:
+
+$$z_0 = \mathcal{E}(x_0), \quad x_0 \approx \mathcal{D}(z_0)$$
+
+Diffusion runs in the 4× compressed latent space — dramatically reducing computation while preserving image quality.
+
+## Summary
+
+| Model | Approach | Resolution |
+|-------|----------|-----------|
+| DDPM | Pixel-space | 256×256 |
+| Stable Diffusion | Latent-space | 512–1024 |
+| SD 3.5 Large | MMDiT + Flow Matching | 1024+ |
+
+The field is moving toward **Flow Matching** (Stochastic Interpolants) which offers straighter trajectories and fewer NFEs — making SD 3.5 significantly faster than older schedulers.
