@@ -151,7 +151,7 @@ export default function BossArena() {
                     left: 0,
                     width: "100%",
                     height: "2px",
-                    background: "linear-gradient(90deg, transparent, #C9A84C, #FFD700, #C9A84C, transparent)",
+                    background: "linear-gradient(90deg, transparent, #B4833D, #D4A95A, #B4833D, transparent)",
                     boxShadow: "0 0 20px rgba(201,168,76,0.8)",
                     animation: "inkSlash 0.5s ease-out 0.3s both",
                 }} />
@@ -162,7 +162,7 @@ export default function BossArena() {
                     transform: "translate(-50%, -50%)",
                     fontFamily: "'Cinzel', serif",
                     fontSize: "clamp(1.5rem, 5vw, 3rem)",
-                    color: "#C9A84C",
+                    color: "#B4833D",
                     letterSpacing: "0.3em",
                     textShadow: "0 0 20px rgba(201,168,76,0.8)",
                     whiteSpace: "nowrap",
@@ -292,7 +292,7 @@ export default function BossArena() {
                             <polyline
                                 points={`${c.x1},${c.y1} ${c.x2},${c.y2} ${c.x3},${c.y3}`}
                                 fill="none"
-                                stroke={i % 2 === 0 ? "#C9A84C" : "#FFD700"}
+                                stroke={i % 2 === 0 ? "#B4833D" : "#D4A95A"}
                                 strokeWidth={i % 3 === 0 ? 1.5 : 0.8}
                                 strokeDasharray="300"
                                 strokeDashoffset="300"
@@ -321,7 +321,7 @@ export default function BossArena() {
                             cx={x} cy={870}
                             rx={80 + i * 20} ry={8}
                             fill="none"
-                            stroke="#C9A84C"
+                            stroke="#B4833D"
                             strokeWidth={0.5}
                             opacity={0.3}
                             style={{

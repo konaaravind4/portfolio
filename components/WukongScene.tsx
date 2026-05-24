@@ -253,7 +253,7 @@ export default function WukongScene() {
           position: fixed;
           width: ${size}px;
           height: ${size}px;
-          background: linear-gradient(135deg, #C9A84C, #FFD700);
+          background: linear-gradient(135deg, #B4833D, #D4A95A);
           border-radius: 2px;
           left: ${rect.left + Math.random() * rect.width}px;
           top: ${rect.top + Math.random() * rect.height}px;
@@ -275,7 +275,7 @@ export default function WukongScene() {
       const flash = document.createElement("div");
       flash.style.cssText = `
         position: fixed; inset: 0;
-        background: linear-gradient(135deg, #C9A84C 0%, #FFD700 40%, #8B0000 100%);
+        background: linear-gradient(135deg, #B4833D 0%, #D4A95A 40%, #8B0000 100%);
         z-index: 9999999;
         pointer-events: none;
         clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);

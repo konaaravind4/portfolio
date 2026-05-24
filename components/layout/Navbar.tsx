@@ -43,10 +43,10 @@ export default function Navbar() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className={`fixed top-0 left-0 right-0 z-[70] transition-all duration-500 ${scrolled ? "py-3" : "py-5"}`}
                 style={scrolled ? {
-                    background: "rgba(5,5,7,0.95)",
+                    background: "rgba(255,255,255,0.95)",
                     backdropFilter: "blur(20px)",
-                    borderBottom: "1px solid rgba(201,168,76,0.2)",
-                    boxShadow: "0 2px 30px rgba(0,0,0,0.6), 0 0 20px rgba(201,168,76,0.05)",
+                    borderBottom: "1px solid rgba(0,0,0,0.06)",
+                    boxShadow: "0 2px 30px rgba(0,0,0,0.06)",
                 } : {
                     background: "transparent",
                     borderBottom: "1px solid transparent",
@@ -59,18 +59,18 @@ export default function Navbar() {
                         <motion.div
                             className="flex items-center justify-center w-10 h-10 border transition-all duration-300 cursor-target"
                             style={{
-                                background: "rgba(201,168,76,0.08)",
-                                borderColor: "rgba(201,168,76,0.3)",
+                                background: "rgba(173,248,2,0.08)",
+                                borderColor: "rgba(173,248,2,0.3)",
                                 clipPath: "polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))"
                             }}
                             whileHover={{ scale: 1.05 }}
-                            animate={{ boxShadow: ["0 0 8px rgba(201,168,76,0.2)", "0 0 20px rgba(201,168,76,0.4)", "0 0 8px rgba(201,168,76,0.2)"] }}
+                            animate={{ boxShadow: ["0 0 8px rgba(173,248,2,0.1)", "0 0 20px rgba(173,248,2,0.2)", "0 0 8px rgba(173,248,2,0.1)"] }}
                             transition={{ duration: 3, repeat: Infinity }}
                         >
                             <Scroll className="w-4 h-4" style={{ color: "var(--gold-primary)" }} />
                         </motion.div>
                         <div style={{ fontFamily: "'Cinzel', serif" }}>
-                            <span className="gradient-text font-bold text-lg text-glow-gold">Kona</span>
+                            <span className="gradient-text font-bold text-lg">Kona</span>
                             <span style={{ color: "var(--text-muted)" }}>.dev</span>
                         </div>
                     </Link>
@@ -87,7 +87,7 @@ export default function Navbar() {
                                     fontFamily: "'Cinzel', serif",
                                     letterSpacing: "0.05em"
                                 }}
-                                onMouseEnter={e => (e.currentTarget.style.color = 'var(--gold-light)')}
+                                onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
                                 onMouseLeave={e => (e.currentTarget.style.color = 'var(--text-secondary)')}
                             >
                                 {label}
@@ -100,22 +100,22 @@ export default function Navbar() {
                         <a href="/resume.pdf" download
                             className="hidden sm:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 border transition-all duration-300 cursor-target"
                             style={{
-                                borderColor: "rgba(201,168,76,0.4)",
-                                color: "var(--gold-primary)",
-                                background: "rgba(201,168,76,0.08)",
+                                borderColor: "rgba(173,248,2,0.4)",
+                                color: "#0A0A0A",
+                                background: "rgba(173,248,2,0.08)",
                                 fontFamily: "'Cinzel', serif",
                                 letterSpacing: "0.05em",
                                 clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))"
                             }}
                             onMouseEnter={e => {
-                                e.currentTarget.style.background = 'rgba(201,168,76,0.15)';
-                                e.currentTarget.style.color = 'var(--gold-bright)';
+                                e.currentTarget.style.background = 'rgba(173,248,2,0.2)';
+                                e.currentTarget.style.borderColor = 'rgba(173,248,2,0.6)';
                             }}
                             onMouseLeave={e => {
-                                e.currentTarget.style.background = 'rgba(201,168,76,0.08)';
-                                e.currentTarget.style.color = 'var(--gold-primary)';
+                                e.currentTarget.style.background = 'rgba(173,248,2,0.08)';
+                                e.currentTarget.style.borderColor = 'rgba(173,248,2,0.4)';
                             }}>
-                            <ExternalLink className="w-3.5 h-3.5" /> Scroll of Deeds
+                            <ExternalLink className="w-3.5 h-3.5" /> Resume
                         </a>
 
                         {/* Hamburger */}
@@ -139,7 +139,6 @@ export default function Navbar() {
                                                     : "scaleX(0)"
                                             : "none",
                                         opacity: menuOpen && i === 1 ? 0 : 1,
-                                        boxShadow: menuOpen && i !== 1 ? "0 0 8px rgba(201,168,76,0.6)" : "none"
                                     }}
                                 />
                             ))}
@@ -148,14 +147,14 @@ export default function Navbar() {
                 </div>
             </motion.nav>
 
-            {/* ── Wukong-colored StaggeredMenu overlay ── */}
+            {/* ── StaggeredMenu overlay ── */}
             <StaggeredMenu
                 ref={menuRef}
                 isFixed
                 showHeader={false}
                 position="right"
-                colors={["#0A0805", "#C9A84C"]}
-                accentColor="#C9A84C"
+                colors={["#FFFFFF", "#ADF802"]}
+                accentColor="#ADF802"
                 items={NAV_ITEMS}
                 socialItems={SOCIAL_ITEMS}
                 displaySocials

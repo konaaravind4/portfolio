@@ -4,10 +4,7 @@ import TargetCursor from "@/components/TargetCursor";
 import dynamic from "next/dynamic";
 
 
-const BossArena = dynamic(
-    () => import("@/components/BossArena").then((m) => m.default),
-    { ssr: false }
-);
+
 
 
 
@@ -51,7 +48,7 @@ export default function RootLayout({
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Ma+Shan+Zheng&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Ma+Shan+Zheng&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
                     rel="stylesheet"
                 />
                 <link
@@ -59,19 +56,7 @@ export default function RootLayout({
                     href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
                 />
             </head>
-            <body className="antialiased" style={{ background: 'transparent', color: 'var(--text-primary)' }}>
-
-                {/* ── Boss Arena Background (fixed, z:-2) ── */}
-                <BossArena />
-
-
-
-                {/* ── Floating ember particles (z:0) ── */}
-                <div className="ember-container" aria-hidden="true">
-                    {Array.from({ length: 20 }).map((_, i) => (
-                        <div key={i} className="ember" />
-                    ))}
-                </div>
+            <body className="antialiased" style={{ background: '#FFFFFF', color: 'var(--text-primary)' }}>
 
                 <TargetCursor
                     targetSelector="a, button, [role='button'], .cursor-target"

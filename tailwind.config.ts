@@ -10,31 +10,31 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                // Wukong gold palette
-                primary: "#C9A84C",
-                secondary: "#E8C96D",
-                accent: "#F5D97A",
-                gold: "#C9A84C",
-                crimson: "#8B0000",
-                light: "#F0E6C8",
+                // Lime accent palette
+                primary: "#ADF802",
+                secondary: "#C4FF33",
+                accent: "#D4FF66",
+                gold: "#ADF802",
+                crimson: "#ADF802",
+                light: "#0A0A0A",
                 dark: {
-                    900: "#050507",
-                    800: "#0A0A0D",
-                    700: "#111118",
-                    600: "#161620",
+                    900: "#FFFFFF",
+                    800: "#F8F8F8",
+                    700: "#F2F2F2",
+                    600: "#FAFAFA",
                 },
                 // aliases
-                "neon-cyan": "#C9A84C",
-                "neon-violet": "#8B0000",
-                "neon-blue": "#E8C96D",
-                "neon-green": "#C9A84C",
-                "neon-pink": "#B8860B",
+                "neon-cyan": "#ADF802",
+                "neon-violet": "#8BC700",
+                "neon-blue": "#C4FF33",
+                "neon-green": "#ADF802",
+                "neon-pink": "#8BC700",
             },
             fontFamily: {
-                sans: ["Inter", "system-ui", "sans-serif"],
+                sans: ["Fira Code", "monospace"],
                 display: ["Cinzel", "serif"],
                 myth: ["Ma Shan Zheng", "serif"],
-                mono: ["JetBrains Mono", "monospace"],
+                mono: ["Fira Code", "monospace"],
             },
             animation: {
                 "float": "float 5s ease-in-out infinite",
@@ -74,7 +74,7 @@ const config: Config = {
                 },
             },
             backgroundImage: {
-                "gradient-gold": "linear-gradient(135deg, #C9A84C 0%, #F5D97A 50%, #E8C96D 100%)",
+                "gradient-gold": "linear-gradient(135deg, #B4833D 0%, #E8C97A 50%, #D4A95A 100%)",
                 "gradient-radial": "radial-gradient(ellipse at center, var(--tw-gradient-stops))",
             },
         },
