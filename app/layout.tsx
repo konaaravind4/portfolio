@@ -1,12 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import TargetCursor from "@/components/TargetCursor";
-import dynamic from "next/dynamic";
-
-
-
-
-
 
 export const metadata: Metadata = {
     title: "Kona Aravind | AI Engineer & ML Researcher",
@@ -43,14 +36,13 @@ export default function RootLayout({
     children,
 }: Readonly<{ children: React.ReactNode }>) {
     return (
-        <html lang="en" className="dark scroll-smooth">
+        <html lang="en" className="scroll-smooth">
             <head>
                 <link rel="preconnect" href="https://fonts.googleapis.com" />
                 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-                {/* Bricolage Grotesque = Brier-style editorial header font */}
-                {/* Syne = modern geometric for body / small text */}
+                {/* Handwriting fonts for notebook aesthetic */}
                 <link
-                    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Fira+Code:wght@300;400;500;600;700&display=swap"
+                    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Kalam:wght@300;400;700&family=Patrick+Hand&family=Permanent+Marker&family=JetBrains+Mono:wght@400;500;600&display=swap"
                     rel="stylesheet"
                 />
                 <link
@@ -58,16 +50,7 @@ export default function RootLayout({
                     href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
                 />
             </head>
-            <body className="antialiased" style={{ background: '#FFFFFF', color: 'var(--text-primary)' }}>
-
-                <TargetCursor
-                    targetSelector="a, button, [role='button'], .cursor-target"
-                    spinDuration={2}
-                    hideDefaultCursor
-                    parallaxOn
-                    hoverDuration={0.2}
-                />
-
+            <body className="antialiased" style={{ color: 'var(--ink)' }}>
                 <div className="main-page-wrapper">
                     {children}
                 </div>

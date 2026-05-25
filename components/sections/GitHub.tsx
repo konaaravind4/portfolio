@@ -7,14 +7,16 @@ import dynamic from "next/dynamic";
 
 const Cubes = dynamic(() => import("@/components/Cubes"), { ssr: false });
 
-const LEVEL_COLORS = ["#F0F0F0", "#D4EDAA", "#A8D840", "#7DBF10", "#ADF802"];
+const LEVEL_COLORS = ["#f0ede4", "#d4edb4", "#a0d870", "#6bbf28", "#4a9010"];
 
 interface ContribDay { date: string; count: number; level: 0 | 1 | 2 | 3 | 4; }
 
 const COLS = 53;
 const ROWS = 7;
 
-function levelToColor(level: number): string { return LEVEL_COLORS[Math.min(level, 4)]; }
+function levelToColor(level: number): string {
+    return LEVEL_COLORS[Math.min(level, 4)];
+}
 
 export default function GitHubSection() {
     const [cellColors, setCellColors] = useState<string[]>([]);
@@ -41,36 +43,171 @@ export default function GitHubSection() {
                 setTotalContribs(sum);
                 setLoading(false);
             })
-            .catch(() => { setCellColors(Array(ROWS * COLS).fill(LEVEL_COLORS[0])); setLoading(false); });
+            .catch(() => {
+                setCellColors(Array(ROWS * COLS).fill(LEVEL_COLORS[0]));
+                setLoading(false);
+            });
     }, []);
 
     return (
-        <section id="github" className="py-20 relative" style={{ background: "#FAFAFA" }}>
-            <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="rounded-2xl p-8 border" style={{ background: "#FFFFFF", borderColor: "rgba(0,0,0,0.06)" }}>
-                    <div className="flex items-center gap-3 mb-6 flex-wrap">
-                        <Github className="w-5 h-5" style={{ color: "#666" }} />
-                        <h2 className="font-display font-bold text-xl" style={{ color: "#0A0A0A" }}>GitHub Contributions</h2>
+        <section
+            id="github"
+            className="py-16 relative"
+            style={{ background: "transparent" }}
+        >
+            {/* Page label */}
+            <div className="absolute top-4 right-6 page-label">
+                Page 8
+            </div>
+
+            <div className="max-w-5xl mx-auto px-4 sm:px-8 pl-16 sm:pl-24">
+                {/* Heading */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-8"
+                >
+                    <h2
+                        className="section-heading inline-block"
+                        style={{ fontFamily: "'Caveat', cursive" }}
+                    >
+                        Commit History 📊
+                    </h2>
+                    <p
+                        style={{
+                            fontFamily: "'Kalam', cursive",
+                            color: "var(--pencil)",
+                            fontSize: "0.9rem",
+                            fontStyle: "italic",
+                            marginTop: "0.25rem",
+                        }}
+                    >
+                        (every commit is a step toward something real)
+                    </p>
+                </motion.div>
+
+                {/* Chart wrapped in notebook box */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.15 }}
+                    className="notebook-page p-6"
+                    style={{ border: "1.5px solid rgba(184,212,232,0.7)" }}
+                >
+                    {/* Chart header */}
+                    <div className="flex items-center gap-3 mb-5 flex-wrap">
+                        <Github className="w-4 h-4" style={{ color: "var(--pencil)" }} />
+                        <span
+                            style={{
+                                fontFamily: "'Caveat', cursive",
+                                fontWeight: 700,
+                                fontSize: "1.1rem",
+                                color: "var(--ink)",
+                            }}
+                        >
+                            GitHub Contributions
+                        </span>
                         {totalContribs > 0 && (
-                            <span className="text-xs font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(173,248,2,0.1)", color: "#6B9900", border: "1px solid rgba(173,248,2,0.2)" }}>
+                            <span
+                                style={{
+                                    fontFamily: "'Patrick Hand', cursive",
+                                    fontSize: "0.78rem",
+                                    color: "#4a9010",
+                                    background: "rgba(74,144,16,0.1)",
+                                    border: "1px solid rgba(74,144,16,0.25)",
+                                    borderRadius: "999px",
+                                    padding: "0.15rem 0.6rem",
+                                }}
+                            >
                                 {totalContribs.toLocaleString()} contributions
                             </span>
                         )}
-                        <a href="https://github.com/konaaravind4" target="_blank" rel="noopener noreferrer" className="ml-auto text-xs hover:underline transition-colors" style={{ color: "#ADF802" }}>@konaaravind4</a>
+                        <a
+                            href="https://github.com/konaaravind4"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            style={{
+                                marginLeft: "auto",
+                                fontFamily: "'Kalam', cursive",
+                                fontSize: "0.8rem",
+                                color: "var(--ink)",
+                                textDecoration: "underline",
+                                textDecorationColor: "var(--margin-red)",
+                            }}
+                        >
+                            @konaaravind4
+                        </a>
                     </div>
 
                     {loading ? (
-                        <div className="flex items-center justify-center h-40 text-sm" style={{ color: "#999" }}>Loading contributions…</div>
+                        <div
+                            className="flex items-center justify-center h-32"
+                            style={{
+                                fontFamily: "'Kalam', cursive",
+                                color: "var(--pencil)",
+                                fontSize: "0.9rem",
+                                fontStyle: "italic",
+                            }}
+                        >
+                            Loading contributions…
+                        </div>
                     ) : (
                         <div style={{ width: "100%", aspectRatio: `${COLS} / ${ROWS}`, position: "relative" }}>
-                            <Cubes cols={COLS} rows={ROWS} maxAngle={30} radius={4} easing="power3.out" duration={{ enter: 0.25, leave: 0.5 }} cellGap={2} borderStyle="1px solid rgba(0,0,0,0.04)" faceColor={LEVEL_COLORS[0]} shadow={false} autoAnimate rippleOnClick rippleColor="#ADF802" rippleSpeed={3} cellColors={cellColors} />
+                            <Cubes
+                                cols={COLS}
+                                rows={ROWS}
+                                maxAngle={25}
+                                radius={3}
+                                easing="power3.out"
+                                duration={{ enter: 0.25, leave: 0.5 }}
+                                cellGap={2}
+                                borderStyle="1px solid rgba(0,0,0,0.04)"
+                                faceColor={LEVEL_COLORS[0]}
+                                shadow={false}
+                                autoAnimate
+                                rippleOnClick
+                                rippleColor="#6bbf28"
+                                rippleSpeed={3}
+                                cellColors={cellColors}
+                            />
                         </div>
                     )}
 
+                    {/* Legend */}
                     <div className="flex items-center gap-2 mt-4 justify-end">
-                        <span className="text-xs" style={{ color: "#999" }}>Less</span>
-                        {LEVEL_COLORS.map((c, i) => (<div key={i} className="w-3 h-3 rounded-sm" style={{ background: c, border: "1px solid rgba(0,0,0,0.06)" }} />))}
-                        <span className="text-xs" style={{ color: "#999" }}>More</span>
+                        <span
+                            style={{
+                                fontFamily: "'Patrick Hand', cursive",
+                                fontSize: "0.72rem",
+                                color: "var(--pencil)",
+                            }}
+                        >
+                            Less
+                        </span>
+                        {LEVEL_COLORS.map((c, i) => (
+                            <div
+                                key={i}
+                                style={{
+                                    width: "12px",
+                                    height: "12px",
+                                    borderRadius: "3px",
+                                    background: c,
+                                    border: "1px solid rgba(0,0,0,0.08)",
+                                }}
+                            />
+                        ))}
+                        <span
+                            style={{
+                                fontFamily: "'Patrick Hand', cursive",
+                                fontSize: "0.72rem",
+                                color: "var(--pencil)",
+                            }}
+                        >
+                            More
+                        </span>
                     </div>
                 </motion.div>
             </div>

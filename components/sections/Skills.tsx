@@ -1,94 +1,209 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Zap } from "lucide-react";
-import PixelTransition from "@/components/PixelTransition";
-import WordReveal from "@/components/ui/WordReveal";
+import TechSticker from "@/components/ui/TechSticker";
+import MathDoodle from "@/components/ui/MathDoodle";
+
+const ROTATIONS = [-6, 4, -3, 7, -5, 3, -8, 6, -4, 5, -7, 3, -2, 8, -5, 4, -6, 2, -3, 7, -4, 5, -8, 3, -6, 4, -2, 7, -5, 6];
+
+const SKILL_COLORS: Record<string, string> = {
+    "Python":           "#fbbf24",
+    "PyTorch":          "#f97316",
+    "HuggingFace":      "#f59e0b",
+    "LangChain":        "#10b981",
+    "Docker":           "#0ea5e9",
+    "FastAPI":          "#14b8a6",
+    "SQL / PostgreSQL": "#3b82f6",
+    "React/Next.js":    "#06b6d4",
+    "Redis":            "#ef4444",
+    "Kafka":            "#8b5cf6",
+    "Apache Flink":     "#f97316",
+    "A2A Systems":      "#10b981",
+    "Gemini API":       "#06b6d4",
+    "Tableau":          "#3b82f6",
+    "TFX / MLOps":      "#8b5cf6",
+    "MCP Protocol":     "#14b8a6",
+    "Diffusion Models": "#f59e0b",
+    "RAG / GraphRAG":   "#10b981",
+    "NumPy":            "#0ea5e9",
+    "Pandas":           "#3b82f6",
+    "Scikit-learn":     "#f97316",
+    "Keras / TF":       "#ef4444",
+    "OpenCV":           "#06b6d4",
+    "PySpark":          "#f59e0b",
+    "MongoDB":          "#10b981",
+    "AWS":              "#f97316",
+    "Git":              "#f97316",
+    "LlamaIndex":       "#fbbf24",
+    "Streamlit":        "#ef4444",
+    "Plotly":           "#8b5cf6",
+    "Jupyter":          "#f59e0b",
+    "Probability & Stats": "#3b82f6",
+    "default":          "#84cc16",
+};
 
 const skills = [
-    { name: "Python", emoji: "🐍", color: "#ADF802", docs: "https://docs.python.org/3/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-    { name: "PyTorch", emoji: "🔥", color: "#8BC700", docs: "https://pytorch.org/docs", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" },
-    { name: "LangChain", emoji: "🔗", color: "#ADF802", docs: "https://docs.langchain.com", logo: "https://raw.githubusercontent.com/langchain-ai/langchain/master/docs/static/img/brand/wordmark.png" },
-    { name: "RAG / GraphRAG", emoji: "🧠", color: "#8BC700", docs: "https://microsoft.github.io/graphrag/", logo: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
-    { name: "HuggingFace", emoji: "🤗", color: "#ADF802", docs: "https://huggingface.co/docs", logo: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
-    { name: "Apache Flink", emoji: "⚡", color: "#8BC700", docs: "https://flink.apache.org/docs/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apacheflink/apacheflink-original.svg" },
-    { name: "FastAPI", emoji: "🚀", color: "#ADF802", docs: "https://fastapi.tiangolo.com/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" },
-    { name: "SQL / PostgreSQL", emoji: "🗄️", color: "#8BC700", docs: "https://www.postgresql.org/docs/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
-    { name: "A2A Systems", emoji: "🤖", color: "#ADF802", docs: "https://google.github.io/A2A/", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" },
-    { name: "Gemini API", emoji: "✨", color: "#8BC700", docs: "https://ai.google.dev/gemini-api/docs", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" },
-    { name: "Tableau", emoji: "📊", color: "#ADF802", docs: "https://help.tableau.com/", logo: "https://cdn.worldvectorlogo.com/logos/tableau-software.svg" },
-    { name: "TFX / MLOps", emoji: "⚙️", color: "#8BC700", docs: "https://www.tensorflow.org/tfx/guide", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" },
-    { name: "Docker", emoji: "🐳", color: "#ADF802", docs: "https://docs.docker.com/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" },
-    { name: "MCP Protocol", emoji: "🌐", color: "#8BC700", docs: "https://modelcontextprotocol.io/docs", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/networkx/networkx-original.svg" },
-    { name: "Diffusion Models", emoji: "🎨", color: "#ADF802", docs: "https://huggingface.co/docs/diffusers", logo: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
-    { name: "Probability & Stats", emoji: "📈", color: "#8BC700", docs: "https://www.khanacademy.org/math/statistics-probability", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-    { name: "NumPy", emoji: "🔢", color: "#ADF802", docs: "https://numpy.org/doc/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" },
-    { name: "Pandas", emoji: "🐼", color: "#8BC700", docs: "https://pandas.pydata.org/docs/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" },
-    { name: "Scikit-learn", emoji: "🤖", color: "#ADF802", docs: "https://scikit-learn.org/stable/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/scikitlearn/scikitlearn-original.svg" },
-    { name: "Keras / TF", emoji: "🧬", color: "#8BC700", docs: "https://keras.io/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/keras/keras-original.svg" },
-    { name: "OpenCV", emoji: "👁️", color: "#ADF802", docs: "https://docs.opencv.org/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/opencv/opencv-original.svg" },
-    { name: "PySpark", emoji: "🌩️", color: "#8BC700", docs: "https://spark.apache.org/docs/latest/api/python/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachespark/apachespark-original.svg" },
-    { name: "Kafka", emoji: "📨", color: "#ADF802", docs: "https://kafka.apache.org/documentation/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/apachekafka/apachekafka-original.svg" },
-    { name: "MongoDB", emoji: "🍃", color: "#8BC700", docs: "https://www.mongodb.com/docs/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-    { name: "AWS", emoji: "☁️", color: "#ADF802", docs: "https://docs.aws.amazon.com/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" },
-    { name: "Git", emoji: "🌿", color: "#8BC700", docs: "https://git-scm.com/doc", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-    { name: "LlamaIndex", emoji: "🦙", color: "#ADF802", docs: "https://docs.llamaindex.ai/", logo: "https://huggingface.co/front/assets/huggingface_logo-noborder.svg" },
-    { name: "Streamlit", emoji: "🖥️", color: "#8BC700", docs: "https://docs.streamlit.io/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/streamlit/streamlit-original.svg" },
-    { name: "Plotly", emoji: "📉", color: "#ADF802", docs: "https://plotly.com/python/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/plotly/plotly-original.svg" },
-    { name: "Jupyter", emoji: "📓", color: "#8BC700", docs: "https://jupyter.org/documentation", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" },
+    { name: "Python",           emoji: "🐍" },
+    { name: "PyTorch",          emoji: "🔥" },
+    { name: "LangChain",        emoji: "🔗" },
+    { name: "RAG / GraphRAG",   emoji: "🧠" },
+    { name: "HuggingFace",      emoji: "🤗" },
+    { name: "Apache Flink",     emoji: "⚡" },
+    { name: "FastAPI",          emoji: "🚀" },
+    { name: "SQL / PostgreSQL", emoji: "🗄️" },
+    { name: "A2A Systems",      emoji: "🤖" },
+    { name: "Gemini API",       emoji: "✨" },
+    { name: "Tableau",          emoji: "📊" },
+    { name: "TFX / MLOps",     emoji: "⚙️" },
+    { name: "Docker",           emoji: "🐳" },
+    { name: "MCP Protocol",     emoji: "🌐" },
+    { name: "Diffusion Models", emoji: "🎨" },
+    { name: "Probability & Stats", emoji: "📈" },
+    { name: "NumPy",            emoji: "🔢" },
+    { name: "Pandas",           emoji: "🐼" },
+    { name: "Scikit-learn",     emoji: "🤖" },
+    { name: "Keras / TF",       emoji: "🧬" },
+    { name: "OpenCV",           emoji: "👁️" },
+    { name: "PySpark",          emoji: "🌩️" },
+    { name: "Kafka",            emoji: "📨" },
+    { name: "MongoDB",          emoji: "🍃" },
+    { name: "AWS",              emoji: "☁️" },
+    { name: "Git",              emoji: "🌿" },
+    { name: "LlamaIndex",       emoji: "🦙" },
+    { name: "Streamlit",        emoji: "🖥️" },
+    { name: "Plotly",           emoji: "📉" },
+    { name: "Jupyter",          emoji: "📓" },
 ];
 
 const certs = [
-    { name: "OCI Data Science Professional", issuer: "Oracle", date: "Oct 2025", hex: "#ADF802" },
-    { name: "CRM Certification", issuer: "Upskill", date: "Oct 2025", hex: "#8BC700" },
-    { name: "Google A2A Intensive", issuer: "Google", date: "Dec 2025", hex: "#ADF802" },
+    { name: "OCI Data Science Professional", issuer: "Oracle", date: "Oct 2025", emoji: "🏆" },
+    { name: "CRM Certification",             issuer: "Upskill",date: "Oct 2025", emoji: "📜" },
+    { name: "Google A2A Intensive",          issuer: "Google", date: "Dec 2025", emoji: "⭐" },
 ];
-
-const containerVariants = { hidden: {}, visible: { transition: { staggerChildren: 0.045, delayChildren: 0.15 } } };
-const cardVariants = { hidden: { opacity: 0, y: 28, scale: 0.82 }, visible: { opacity: 1, y: 0, scale: 1, transition: { type: "spring" as const, stiffness: 220, damping: 20 } } };
 
 export default function Skills() {
     return (
-        <section id="skills" className="py-28 relative" style={{ background: "transparent" }}>
-            <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse at 70% 50%, rgba(173,248,2,0.03) 0%, transparent 60%)" }} />
-            <div className="absolute inset-0 grid-bg opacity-20" />
-            <div className="absolute top-0 left-0 right-0 h-px" style={{ background: "linear-gradient(90deg, transparent, rgba(173,248,2,0.3), transparent)" }} />
+        <section id="skills" className="py-20 relative" style={{ background: "transparent" }}>
+            {/* Math doodles */}
+            <MathDoodle count={6} />
 
-            <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="text-center mb-16">
-                    <div className="inline-flex items-center gap-2 mb-6 px-4 py-2 text-xs font-semibold" style={{ border: "1px solid rgba(173,248,2,0.3)", color: "#0A0A0A", background: "rgba(173,248,2,0.08)", fontFamily: "'JetBrains Mono', monospace", clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))" }}>
-                        <Zap className="w-3.5 h-3.5" style={{ color: "var(--gold-primary)" }} /> Technical Arsenal
-                    </div>
-                    <h2 className="section-heading mb-3">Skills & Tools</h2>
-                    <div className="section-divider max-w-xs mx-auto" />
-                    <WordReveal
-                        text="Hover a skill to reveal its true form through pixel transition."
-                        className="max-w-lg mx-auto text-sm"
-                        as="p"
-                    />
+            {/* Page label */}
+            <div
+                className="absolute top-4 right-6 page-label"
+                style={{ fontFamily: "'Patrick Hand', cursive" }}
+            >
+                Page 2
+            </div>
+
+            <div className="max-w-6xl mx-auto px-4 sm:px-8 pl-20">
+                {/* Section heading */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5 }}
+                    className="mb-10"
+                >
+                    <h2
+                        className="section-heading handwritten-underline mb-1 inline-block"
+                        style={{ fontFamily: "'Caveat', cursive" }}
+                    >
+                        Tech Arsenal 🧰
+                    </h2>
+                    <p
+                        style={{
+                            fontFamily: "'Kalam', cursive",
+                            fontSize: "0.95rem",
+                            color: "var(--pencil)",
+                            marginTop: "0.5rem",
+                            fontStyle: "italic",
+                        }}
+                    >
+                        (stuff i actually use)
+                    </p>
                 </motion.div>
 
-                <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-16" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}>
+                {/* Sticker board */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.6 }}
+                    className="flex flex-wrap gap-3 mb-14"
+                >
                     {skills.map((skill, i) => (
-                        <motion.a key={skill.name} href={skill.docs} target="_blank" rel="noopener noreferrer" variants={cardVariants} animate={{ y: [0, -(4 + (i % 5) * 2), 0] }} transition={{ duration: 4 + (i % 4) * 0.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }} whileHover={{ scale: 1.08, transition: { type: "spring", stiffness: 300, damping: 18 } }} className="cursor-target">
-                            <PixelTransition gridSize={7} pixelColor={skill.color} animationStepDuration={0.3} className="w-full aspect-square" style={{ border: `1px solid ${skill.color}25`, background: `${skill.color}08`, clipPath: "polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))" }}
-                                firstContent={<div className="w-full h-full flex flex-col items-center justify-center gap-2" style={{ background: `${skill.color}08` }}><span className="text-2xl leading-none">{skill.emoji}</span><span className="text-center font-semibold leading-tight px-1" style={{ color: "#0A0A0A", fontSize: "0.58rem", fontFamily: "'JetBrains Mono', monospace" }}>{skill.name}</span></div>}
-                                secondContent={<div className="w-full h-full flex flex-col items-center justify-center gap-2 p-3" style={{ background: "rgba(255,255,255,0.95)" }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={skill.logo} alt={skill.name} className="w-8 h-8 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} /><span className="text-center font-bold leading-tight px-1" style={{ color: "#0A0A0A", fontSize: "0.56rem", fontFamily: "'Bricolage Grotesque', sans-serif" }}>{skill.name}</span></div>}
+                        <motion.div
+                            key={skill.name}
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: i * 0.03, type: "spring", stiffness: 200, damping: 18 }}
+                            whileHover={{ scale: 1.1, zIndex: 10 }}
+                        >
+                            <TechSticker
+                                name={skill.name}
+                                emoji={skill.emoji}
+                                color={SKILL_COLORS[skill.name] ?? SKILL_COLORS["default"]}
+                                rotation={ROTATIONS[i % ROTATIONS.length]}
                             />
-                        </motion.a>
+                        </motion.div>
                     ))}
                 </motion.div>
 
-                <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
-                    <p className="text-xs font-bold uppercase tracking-widest mb-4 text-center" style={{ color: "var(--text-muted)", fontFamily: "'JetBrains Mono', monospace" }}>Certifications</p>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Certifications as sticky notes */}
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: 0.2 }}
+                >
+                    <p
+                        style={{
+                            fontFamily: "'Caveat', cursive",
+                            fontWeight: 700,
+                            fontSize: "1.3rem",
+                            color: "var(--ink)",
+                            marginBottom: "0.75rem",
+                        }}
+                    >
+                        📌 Certifications
+                    </p>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                         {certs.map((c, i) => (
-                            <motion.div key={c.name} className="cursor-target p-4 border flex items-center gap-3 corner-ornament" style={{ borderColor: `${c.hex}25`, background: `${c.hex}06`, clipPath: "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))" }} animate={{ y: [0, -5, 0] }} transition={{ duration: 5 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.8 }}>
-                                <div className="w-2 h-2 flex-shrink-0" style={{ background: c.hex, clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }} />
-                                <div>
-                                    <p className="text-sm font-semibold" style={{ color: "var(--text-primary)", fontFamily: "'Bricolage Grotesque', sans-serif" }}>{c.name}</p>
-                                    <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>{c.issuer} · {c.date}</p>
-                                </div>
+                            <motion.div
+                                key={c.name}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.12 }}
+                                className="sticky-note"
+                                style={{
+                                    transform: `rotate(${[-2, 1.5, -1][i % 3]}deg)`,
+                                }}
+                                whileHover={{ scale: 1.03, rotate: 0 }}
+                            >
+                                <div style={{ fontSize: "1.5rem", marginBottom: "0.4rem" }}>{c.emoji}</div>
+                                <p
+                                    style={{
+                                        fontFamily: "'Caveat', cursive",
+                                        fontWeight: 700,
+                                        fontSize: "1rem",
+                                        color: "var(--ink)",
+                                        lineHeight: 1.3,
+                                    }}
+                                >
+                                    {c.name}
+                                </p>
+                                <p
+                                    style={{
+                                        fontFamily: "'Patrick Hand', cursive",
+                                        fontSize: "0.78rem",
+                                        color: "var(--pencil)",
+                                        marginTop: "0.25rem",
+                                    }}
+                                >
+                                    {c.issuer} · {c.date}
+                                </p>
                             </motion.div>
                         ))}
                     </div>

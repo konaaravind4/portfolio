@@ -31,8 +31,10 @@ const config: Config = {
                 "neon-pink": "#8BC700",
             },
             fontFamily: {
-                sans: ["Syne", "sans-serif"],
-                display: ["Bricolage Grotesque", "sans-serif"],
+                sans: ["Kalam", "cursive"],
+                display: ["Caveat", "cursive"],
+                hand: ["Patrick Hand", "cursive"],
+                marker: ["Permanent Marker", "cursive"],
                 mono: ["JetBrains Mono", "Fira Code", "monospace"],
             },
             animation: {
