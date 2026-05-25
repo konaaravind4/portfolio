@@ -43,7 +43,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <div className="flex items-start justify-between gap-4">
                     <div>
                         <span className="text-xs font-medium uppercase tracking-widest mb-1 block" style={{ color: "var(--gold-dim)", fontFamily: "'JetBrains Mono', monospace" }}>{project.category}</span>
-                        <h3 className="font-bold text-lg leading-snug transition-colors duration-200" style={{ color: "#0A0A0A", fontFamily: "'Cinzel', serif" }} onMouseEnter={e => { e.currentTarget.style.color = "var(--gold-dim)"; }} onMouseLeave={e => { e.currentTarget.style.color = "#0A0A0A"; }}>{project.title}</h3>
+                        <h3 className="font-bold text-lg leading-snug transition-colors duration-200" style={{ color: "#0A0A0A", fontFamily: "'Bricolage Grotesque', sans-serif" }} onMouseEnter={e => { e.currentTarget.style.color = "var(--gold-dim)"; }} onMouseLeave={e => { e.currentTarget.style.color = "#0A0A0A"; }}>{project.title}</h3>
                     </div>
                     <div className="flex items-center gap-2 shrink-0 mt-1">
                         {project.github && (
@@ -64,7 +64,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                 <div className="grid grid-cols-2 gap-3">
                     {project.metrics.map((m) => (
                         <div key={m.label} className="text-center py-2 px-3" style={{ background: "rgba(173,248,2,0.04)", border: "1px solid rgba(173,248,2,0.12)", clipPath: "polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))" }}>
-                            <div className="text-xl font-bold gradient-text" style={{ fontFamily: "'Cinzel', serif" }}>{m.value}</div>
+                            <div className="text-xl font-bold gradient-text" style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>{m.value}</div>
                             <div className="text-xs mt-0.5" style={{ color: "var(--text-muted)", fontFamily: "'JetBrains Mono', monospace" }}>{m.label}</div>
                         </div>
                     ))}
@@ -84,13 +84,13 @@ export default function ProjectCard({ project }: { project: Project }) {
                 </div>
 
                 <div className="flex items-center justify-between pt-3 mt-auto" style={{ borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-                    <button onClick={() => setShowArchitecture(true)} className="flex items-center gap-1.5 text-xs transition-all duration-200 group/btn cursor-target" style={{ color: "var(--text-muted)", fontFamily: "'Cinzel', serif", letterSpacing: "0.04em" }} onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")} onMouseLeave={e => (e.currentTarget.style.color = "var(--text-muted)")}>
+                    <button onClick={() => setShowArchitecture(true)} className="flex items-center gap-1.5 text-xs transition-all duration-200 group/btn cursor-target" style={{ color: "var(--text-muted)", fontFamily: "'Bricolage Grotesque', sans-serif", letterSpacing: "0.04em" }} onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")} onMouseLeave={e => (e.currentTarget.style.color = "var(--text-muted)")}>
                         <Sword className="w-3.5 h-3.5" /> Architecture <ChevronRight className="w-3 h-3 group-hover/btn:translate-x-0.5 transition-transform" />
                     </button>
                     {project.demo ? (
-                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-semibold transition-all duration-200 cursor-target" style={{ color: "var(--gold-dim)", fontFamily: "'Cinzel', serif" }} onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")} onMouseLeave={e => (e.currentTarget.style.color = "var(--gold-dim)")}>⚡ Live Demo <ExternalLink className="w-3 h-3" /></a>
+                        <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs font-semibold transition-all duration-200 cursor-target" style={{ color: "var(--gold-dim)", fontFamily: "'Bricolage Grotesque', sans-serif" }} onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")} onMouseLeave={e => (e.currentTarget.style.color = "var(--gold-dim)")}>⚡ Live Demo <ExternalLink className="w-3 h-3" /></a>
                     ) : (
-                        <a href={`/projects/${project.slug}`} className="flex items-center gap-1.5 text-xs font-semibold transition-all duration-200 cursor-target" style={{ color: "var(--gold-dim)", fontFamily: "'Cinzel', serif" }} onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")} onMouseLeave={e => (e.currentTarget.style.color = "var(--gold-dim)")}>Full Details <ChevronRight className="w-3 h-3" /></a>
+                        <a href={`/projects/${project.slug}`} className="flex items-center gap-1.5 text-xs font-semibold transition-all duration-200 cursor-target" style={{ color: "var(--gold-dim)", fontFamily: "'Bricolage Grotesque', sans-serif" }} onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")} onMouseLeave={e => (e.currentTarget.style.color = "var(--gold-dim)")}>Full Details <ChevronRight className="w-3 h-3" /></a>
                     )}
                 </div>
             </motion.div>
@@ -105,7 +105,7 @@ export default function ProjectCard({ project }: { project: Project }) {
                             </button>
                             <div className="flex items-center gap-2 mb-4">
                                 <Sword className="w-5 h-5" style={{ color: "var(--gold-primary)" }} />
-                                <h3 className="font-bold text-lg" style={{ color: "#0A0A0A", fontFamily: "'Cinzel', serif" }}>System Architecture</h3>
+                                <h3 className="font-bold text-lg" style={{ color: "#0A0A0A", fontFamily: "'Bricolage Grotesque', sans-serif" }}>System Architecture</h3>
                             </div>
                             <pre className="text-sm font-mono leading-relaxed rounded-none p-4 overflow-x-auto" style={{ color: "#0A0A0A", background: "rgba(173,248,2,0.04)", border: "1px solid rgba(173,248,2,0.15)", whiteSpace: "pre-wrap" }}>{project.architecture}</pre>
                             <div className="mt-4">

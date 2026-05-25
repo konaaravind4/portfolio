@@ -31,10 +31,9 @@ const config: Config = {
                 "neon-pink": "#8BC700",
             },
             fontFamily: {
-                sans: ["Fira Code", "monospace"],
-                display: ["Cinzel", "serif"],
-                myth: ["Ma Shan Zheng", "serif"],
-                mono: ["Fira Code", "monospace"],
+                sans: ["Syne", "sans-serif"],
+                display: ["Bricolage Grotesque", "sans-serif"],
+                mono: ["JetBrains Mono", "Fira Code", "monospace"],
             },
             animation: {
                 "float": "float 5s ease-in-out infinite",

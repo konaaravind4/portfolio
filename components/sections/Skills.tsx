@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { Zap } from "lucide-react";
 import PixelTransition from "@/components/PixelTransition";
+import WordReveal from "@/components/ui/WordReveal";
 
 const skills = [
     { name: "Python", emoji: "🐍", color: "#ADF802", docs: "https://docs.python.org/3/", logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
@@ -60,7 +61,11 @@ export default function Skills() {
                     </div>
                     <h2 className="section-heading mb-3">Skills & Tools</h2>
                     <div className="section-divider max-w-xs mx-auto" />
-                    <p className="max-w-lg mx-auto text-sm" style={{ color: "var(--text-muted)" }}>Hover a skill to reveal its true form through pixel transition.</p>
+                    <WordReveal
+                        text="Hover a skill to reveal its true form through pixel transition."
+                        className="max-w-lg mx-auto text-sm"
+                        as="p"
+                    />
                 </motion.div>
 
                 <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-3 mb-16" variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-60px" }}>
@@ -68,7 +73,7 @@ export default function Skills() {
                         <motion.a key={skill.name} href={skill.docs} target="_blank" rel="noopener noreferrer" variants={cardVariants} animate={{ y: [0, -(4 + (i % 5) * 2), 0] }} transition={{ duration: 4 + (i % 4) * 0.8, repeat: Infinity, ease: "easeInOut", delay: i * 0.1 }} whileHover={{ scale: 1.08, transition: { type: "spring", stiffness: 300, damping: 18 } }} className="cursor-target">
                             <PixelTransition gridSize={7} pixelColor={skill.color} animationStepDuration={0.3} className="w-full aspect-square" style={{ border: `1px solid ${skill.color}25`, background: `${skill.color}08`, clipPath: "polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px))" }}
                                 firstContent={<div className="w-full h-full flex flex-col items-center justify-center gap-2" style={{ background: `${skill.color}08` }}><span className="text-2xl leading-none">{skill.emoji}</span><span className="text-center font-semibold leading-tight px-1" style={{ color: "#0A0A0A", fontSize: "0.58rem", fontFamily: "'JetBrains Mono', monospace" }}>{skill.name}</span></div>}
-                                secondContent={<div className="w-full h-full flex flex-col items-center justify-center gap-2 p-3" style={{ background: "rgba(255,255,255,0.95)" }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={skill.logo} alt={skill.name} className="w-8 h-8 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} /><span className="text-center font-bold leading-tight px-1" style={{ color: "#0A0A0A", fontSize: "0.56rem", fontFamily: "'Cinzel', serif" }}>{skill.name}</span></div>}
+                                secondContent={<div className="w-full h-full flex flex-col items-center justify-center gap-2 p-3" style={{ background: "rgba(255,255,255,0.95)" }}>{/* eslint-disable-next-line @next/next/no-img-element */}<img src={skill.logo} alt={skill.name} className="w-8 h-8 object-contain" onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} /><span className="text-center font-bold leading-tight px-1" style={{ color: "#0A0A0A", fontSize: "0.56rem", fontFamily: "'Bricolage Grotesque', sans-serif" }}>{skill.name}</span></div>}
                             />
                         </motion.a>
                     ))}
@@ -81,7 +86,7 @@ export default function Skills() {
                             <motion.div key={c.name} className="cursor-target p-4 border flex items-center gap-3 corner-ornament" style={{ borderColor: `${c.hex}25`, background: `${c.hex}06`, clipPath: "polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px))" }} animate={{ y: [0, -5, 0] }} transition={{ duration: 5 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.8 }}>
                                 <div className="w-2 h-2 flex-shrink-0" style={{ background: c.hex, clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }} />
                                 <div>
-                                    <p className="text-sm font-semibold" style={{ color: "var(--text-primary)", fontFamily: "'Cinzel', serif" }}>{c.name}</p>
+                                    <p className="text-sm font-semibold" style={{ color: "var(--text-primary)", fontFamily: "'Bricolage Grotesque', sans-serif" }}>{c.name}</p>
                                     <p className="text-xs mt-0.5" style={{ color: "var(--text-muted)" }}>{c.issuer} · {c.date}</p>
                                 </div>
                             </motion.div>

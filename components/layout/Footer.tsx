@@ -22,7 +22,7 @@ export default function Footer() {
                         <motion.div className="flex items-center justify-center w-9 h-9 border" style={{ background: "rgba(173,248,2,0.08)", borderColor: "rgba(173,248,2,0.3)", clipPath: "polygon(0 0, calc(100% - 5px) 0, 100% 5px, 100% 100%, 5px 100%, 0 calc(100% - 5px))" }} animate={{ boxShadow: ["0 0 8px rgba(173,248,2,0.1)", "0 0 20px rgba(173,248,2,0.2)", "0 0 8px rgba(173,248,2,0.1)"] }} transition={{ duration: 3, repeat: Infinity }}>
                             <Scroll className="w-4 h-4" style={{ color: "var(--gold-primary)" }} />
                         </motion.div>
-                        <span className="font-bold text-lg" style={{ color: "#0A0A0A", fontFamily: "'Cinzel', serif" }}>Kona Aravind</span>
+                        <span className="font-bold text-lg" style={{ color: "#0A0A0A", fontFamily: "'Bricolage Grotesque', sans-serif" }}>Kona Aravind</span>
                     </div>
 
                     <div className="flex items-center gap-3">
@@ -37,7 +37,7 @@ export default function Footer() {
                 </div>
 
                 <div className="mt-8 pt-6 text-center" style={{ borderTop: "1px solid rgba(0,0,0,0.04)" }}>
-                    <p className="text-xs" style={{ color: "rgba(173,248,2,0.4)", fontFamily: "'Cinzel', serif", letterSpacing: "0.15em" }}>✦ · · · THE JOURNEY CONTINUES · · · ✦</p>
+                    <p className="text-xs" style={{ color: "rgba(173,248,2,0.4)", fontFamily: "'Bricolage Grotesque', sans-serif", letterSpacing: "0.15em" }}>✦ · · · THE JOURNEY CONTINUES · · · ✦</p>
                 </div>
             </div>
         </footer>

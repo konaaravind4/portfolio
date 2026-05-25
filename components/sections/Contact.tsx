@@ -85,7 +85,7 @@ export default function Contact() {
                                 <motion.div animate={{ y: [0, -10, 0] }} transition={{ duration: 3, repeat: Infinity }}>
                                     <CheckCircle className="w-14 h-14" style={{ color: "var(--gold-primary)" }} />
                                 </motion.div>
-                                <h3 className="font-bold text-xl" style={{ color: "#0A0A0A", fontFamily: "'Cinzel', serif" }}>Message Sent!</h3>
+                                <h3 className="font-bold text-xl" style={{ color: "#0A0A0A", fontFamily: "'Bricolage Grotesque', sans-serif" }}>Message Sent!</h3>
                                 <p className="text-sm" style={{ color: "var(--text-secondary)" }}>I&apos;ll respond within 24 hours.</p>
                                 <button onClick={() => setSubmitted(false)} className="btn-secondary text-sm cursor-target">Send Another</button>
                             </div>

@@ -160,7 +160,7 @@ export default function BossArena() {
                     top: "50%",
                     left: "50%",
                     transform: "translate(-50%, -50%)",
-                    fontFamily: "'Cinzel', serif",
+                    fontFamily: "'Bricolage Grotesque', sans-serif",
                     fontSize: "clamp(1.5rem, 5vw, 3rem)",
                     color: "#B4833D",
                     letterSpacing: "0.3em",

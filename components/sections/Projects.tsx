@@ -95,7 +95,7 @@ export default function Projects() {
                     className="text-center mt-12">
                     <a href="https://github.com/konaaravind4" target="_blank" rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-sm transition-all duration-300 group nav-link-brush"
-                        style={{ color: "var(--text-muted)", fontFamily: "'Cinzel', serif", letterSpacing: "0.05em" }}
+                        style={{ color: "var(--text-muted)", fontFamily: "'Bricolage Grotesque', sans-serif", letterSpacing: "0.05em" }}
                         onMouseEnter={e => (e.currentTarget.style.color = "#0A0A0A")}
                         onMouseLeave={e => (e.currentTarget.style.color = "var(--text-muted)")}>
                         Explore All Projects

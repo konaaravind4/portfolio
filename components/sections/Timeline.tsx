@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { BookOpen, Briefcase, Award, GraduationCap } from "lucide-react";
+import WordReveal from "@/components/ui/WordReveal";
 
 const events = [
     { icon: GraduationCap, type: "Education", title: "B.Tech in CS (Artificial Intelligence)", org: "GJUST — Guru Jambeswar University of Science & Technology", location: "Hisar, Haryana", date: "2022 – May 2026", desc: "Major in Computer Science (AI). Cumulative GPA: 6.8/10. Focusing on machine learning, multi-agent systems, and intelligent pipeline engineering.", color: "#ADF802" },
@@ -47,9 +48,14 @@ export default function Timeline() {
                                             <span className="text-xs font-semibold uppercase tracking-widest" style={{ color: event.color, fontFamily: "'JetBrains Mono', monospace" }}>{event.type}</span>
                                             <span className="text-xs font-mono" style={{ color: "var(--text-muted)" }}>{event.date}</span>
                                         </div>
-                                        <h3 className="font-bold text-base mb-0.5" style={{ color: "var(--text-primary)", fontFamily: "'Cinzel', serif" }}>{event.title}</h3>
+                                        <h3 className="font-bold text-base mb-0.5" style={{ color: "var(--text-primary)", fontFamily: "'Bricolage Grotesque', sans-serif" }}>{event.title}</h3>
                                         <p className="text-xs mb-3" style={{ color: "var(--text-muted)" }}>{event.org} · {event.location}</p>
-                                        <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>{event.desc}</p>
+                                        <WordReveal
+                                            text={event.desc}
+                                            className="text-sm leading-relaxed"
+                                            as="p"
+                                            threshold={0.2}
+                                        />
                                     </motion.div>
                                 </motion.div>
                             );

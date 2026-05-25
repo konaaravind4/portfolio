@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700;800;900&family=Ma+Shan+Zheng&family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -44,7 +44,7 @@
   }
 
   body {
-    font-family: 'Fira Code', monospace;
+    font-family: 'Syne', sans-serif;
     background: transparent !important;
     color: var(--text-primary);
     overflow-x: hidden;
@@ -74,7 +74,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
   }
 }
 
@@ -156,7 +156,7 @@
 
   /* Section heading */
   .section-heading {
-    font-family: 'Cinzel', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 800;
     font-size: clamp(2rem, 5vw, 3.5rem);
     color: var(--text-primary);
@@ -172,7 +172,7 @@
     border-radius: 0;
     background: var(--gold-primary);
     color: #0A0A0A;
-    font-family: 'Cinzel', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 700;
     font-size: 0.875rem;
     letter-spacing: 0.05em;
@@ -219,7 +219,7 @@
     border: 1.5px solid rgba(173, 248, 2, 0.5);
     color: #0A0A0A;
     background: rgba(173, 248, 2, 0.06);
-    font-family: 'Cinzel', serif;
+    font-family: 'Bricolage Grotesque', sans-serif;
     font-weight: 600;
     font-size: 0.875rem;
     letter-spacing: 0.05em;
@@ -293,7 +293,7 @@
     clip-path: inset(0 0% 0 0);
   }
 
-  /* Scroll-reveal utility */
+  /* Scroll-reveal utility — base */
   .reveal-up {
     opacity: 0;
     transform: translateY(30px);
@@ -304,6 +304,66 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── Word-by-word reveal for small text ── */
+  .word-reveal {
+    overflow: hidden;
+    display: inline-block;
+  }
+
+  .word-reveal-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(110%) rotateX(-20deg);
+    transform-origin: top center;
+    transition:
+      opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+      transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    will-change: opacity, transform;
+    padding-right: 0.25em;
+  }
+
+  .word-reveal-word:last-child {
+    padding-right: 0;
+  }
+
+  /* When the parent element gets .in-view, stagger each .word-reveal-word */
+  .word-reveal.in-view .word-reveal-word {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+
+  /* Generate stagger delays for up to 30 words */
+  .word-reveal.in-view .word-reveal-word:nth-child(1)  { transition-delay: 0.00s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(2)  { transition-delay: 0.05s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(3)  { transition-delay: 0.10s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(4)  { transition-delay: 0.15s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(5)  { transition-delay: 0.20s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(6)  { transition-delay: 0.25s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(7)  { transition-delay: 0.30s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(8)  { transition-delay: 0.35s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(9)  { transition-delay: 0.40s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(10) { transition-delay: 0.45s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(11) { transition-delay: 0.50s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(12) { transition-delay: 0.55s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(13) { transition-delay: 0.60s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(14) { transition-delay: 0.65s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(15) { transition-delay: 0.70s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(16) { transition-delay: 0.75s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(17) { transition-delay: 0.80s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(18) { transition-delay: 0.85s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(19) { transition-delay: 0.90s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(20) { transition-delay: 0.95s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(21) { transition-delay: 1.00s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(22) { transition-delay: 1.05s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(23) { transition-delay: 1.10s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(24) { transition-delay: 1.15s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(25) { transition-delay: 1.20s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(26) { transition-delay: 1.25s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(27) { transition-delay: 1.30s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(28) { transition-delay: 1.35s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(29) { transition-delay: 1.40s; }
+  .word-reveal.in-view .word-reveal-word:nth-child(30) { transition-delay: 1.45s; }
 }
 
 /* ─── KEYFRAME ANIMATIONS ─────────────────────────────────── */

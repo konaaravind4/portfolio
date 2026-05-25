@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, Github, Sparkles, ChevronRight, FileText } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import WordReveal from "@/components/ui/WordReveal";
 
 const TICKER_TEXT = "AI Engineer · ML Researcher · Quant Enthusiast · Multi-Agent Builder · ";
 
@@ -81,7 +82,7 @@ export default function Hero() {
                 <div className="whitespace-nowrap w-full mb-6 overflow-hidden">
                     <span className="animate-marquee-left inline-block font-black uppercase"
                         style={{
-                            fontFamily: "'Cinzel', serif",
+                            fontFamily: "'Bricolage Grotesque', sans-serif",
                             fontSize: "clamp(3rem, 8vw, 7rem)",
                             WebkitTextStroke: "1.5px rgba(0,0,0,0.06)",
                             color: "transparent",
@@ -93,7 +94,7 @@ export default function Hero() {
                 <div className="whitespace-nowrap w-full overflow-hidden">
                     <span className="animate-marquee-right inline-block font-black uppercase"
                         style={{
-                            fontFamily: "'Cinzel', serif",
+                            fontFamily: "'Bricolage Grotesque', sans-serif",
                             fontSize: "clamp(3rem, 8vw, 7rem)",
                             WebkitTextStroke: "1px rgba(173,248,2,0.08)",
                             color: "transparent",
@@ -136,7 +137,7 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     transition={{ delay: 0.3, duration: 1.0 }}
                     className="text-5xl sm:text-7xl md:text-8xl font-black tracking-tight mb-4 cursor-target animate-levitate"
-                    style={{ fontFamily: "'Cinzel', serif" }}>
+                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                     <span style={{ color: "#0A0A0A" }}>Kona</span>{" "}
                     <span className="gradient-text-shimmer">Aravind</span>
                 </motion.h1>
@@ -147,7 +148,7 @@ export default function Hero() {
                     animate={{ opacity: 1 }}
                     transition={{ delay: 0.5, duration: 0.6 }}
                     className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-base sm:text-lg font-semibold mb-6"
-                    style={{ fontFamily: "'Cinzel', serif" }}>
+                    style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                     <span style={{ color: "#0A0A0A" }}>AI Engineer</span>
                     <span style={{ color: "var(--gold-primary)" }}>·</span>
                     <span style={{ color: "#0A0A0A" }}>ML Researcher</span>
@@ -161,9 +162,12 @@ export default function Hero() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6, duration: 0.7 }}
                     className="text-base sm:text-lg max-w-2xl mx-auto mb-10 leading-relaxed"
-                    style={{ color: "var(--text-secondary)", fontFamily: "'Inter', sans-serif" }}>
-                    Building intelligent systems at the intersection of LLMs, multi-agent architectures, and real-time ML pipelines.
-                    CS(AI) @ GJUST · Oracle OCI Certified · Google A2A Trained.
+                    style={{ color: "var(--text-secondary)", fontFamily: "'Syne', sans-serif" }}>
+                    <WordReveal
+                        text="Building intelligent systems at the intersection of LLMs, multi-agent architectures, and real-time ML pipelines. CS(AI) @ GJUST · Oracle OCI Certified · Google A2A Trained."
+                        className="text-base sm:text-lg max-w-2xl mx-auto leading-relaxed"
+                        as="span"
+                    />
                 </motion.p>
 
                 {/* CTAs */}
@@ -237,7 +241,7 @@ export default function Hero() {
                             animate={{ y: [0, -6, 0] }}
                             transition={{ duration: 4 + i * 0.7, repeat: Infinity, ease: "easeInOut", delay: i * 0.5 }}>
                             <div className="text-2xl font-bold gradient-text"
-                                style={{ fontFamily: "'Cinzel', serif" }}>{value}</div>
+                                style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>{value}</div>
                             <div className="text-xs mt-0.5 tracking-widest uppercase"
                                 style={{ color: "var(--text-muted)", fontFamily: "'JetBrains Mono', monospace" }}>{label}</div>
                         </motion.div>

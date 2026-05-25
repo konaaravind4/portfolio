@@ -69,7 +69,7 @@ export default function Navbar() {
                         >
                             <Scroll className="w-4 h-4" style={{ color: "var(--gold-primary)" }} />
                         </motion.div>
-                        <div style={{ fontFamily: "'Cinzel', serif" }}>
+                        <div style={{ fontFamily: "'Bricolage Grotesque', sans-serif" }}>
                             <span className="gradient-text font-bold text-lg">Kona</span>
                             <span style={{ color: "var(--text-muted)" }}>.dev</span>
                         </div>
@@ -84,7 +84,7 @@ export default function Navbar() {
                                 className="text-sm font-medium nav-link-brush transition-colors duration-300 cursor-target"
                                 style={{
                                     color: "var(--text-secondary)",
-                                    fontFamily: "'Cinzel', serif",
+                                    fontFamily: "'Bricolage Grotesque', sans-serif",
                                     letterSpacing: "0.05em"
                                 }}
                                 onMouseEnter={e => (e.currentTarget.style.color = 'var(--text-primary)')}
@@ -103,7 +103,7 @@ export default function Navbar() {
                                 borderColor: "rgba(173,248,2,0.4)",
                                 color: "#0A0A0A",
                                 background: "rgba(173,248,2,0.08)",
-                                fontFamily: "'Cinzel', serif",
+                                fontFamily: "'Bricolage Grotesque', sans-serif",
                                 letterSpacing: "0.05em",
                                 clipPath: "polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px))"
                             }}
